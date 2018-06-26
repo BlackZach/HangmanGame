@@ -1,0 +1,41 @@
+* {
+    background-color: rgb(82, 78, 76);
+    color: rgb(174, 167, 243);
+    font-family: papyrus;
+    font-size: 24px;
+}
+.row {
+    flex-direction: row;
+    border: 4px dashed gray;
+    margin: 6px;
+    padding: 8px 24px 8px 24px;
+}
+.panel {
+    flex: 1;
+    flex-direction: row;
+}
+#word-blanks {
+    align-self: center;
+    position: relative;
+}
+.jumbotron {
+    text-align: center;
+    padding: 20px;
+    background-color: antiquewhite;
+    border: 4px solid gray;
+    font-size: 38px;
+    font-family: fantasy;
+    color: rgb(13, 53, 38);
+    margin: 6px;
+}
+.body1 {
+    z-index: 1;
+    position: relative;
+    left:500px;
+    top: -550px;
+    height: 400px;
+    width: 300px;
+    text-align: center;
+    visibility: hidden;
+    color: white;
+}
