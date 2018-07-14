@@ -86,7 +86,7 @@ _&#160_&#160_&#160_&#160 &#160||&#160 &#160_&#160_&#160_&#160_<br>
 </div>
 </div>
 <script type="text/javascript">
-let wordBank = ['red', 'blue', 'green', 'manuscript', 'elephant', 'wookie', 'dynamo', 'wreck', 'monster', 'lady dragon'];
+let wordBank = ['red', 'blue', 'green', 'man', 'elephant', 'woman', 'child', 'train', 'monster', 'dragon', 'bird', 'waiter', 'teacher', 'crown'];
 let wins = 0;
 let loss = 0;
 let wrongLetter = [];
@@ -94,24 +94,10 @@ let guessesLeft = 9;
 let underScores = [];
 let userGuesses = [];
 let wrongGuesses = [];
+let correctGuesses = [];
 let randWord;
 let winCounter = 0;
-let death = 0;
-function startGame() {
-// picks random word
-randWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-for (let i = 0; i < randWord.length; i++)
-{
-    underScores.push(' _ ');
-}
-document.getElementById('word-blanks').textContent = underScores.join(' ');
-console.log(underScores);
-//reset
-wrongLetter = [];
-guessesLeft = 9;
-//html
-document.getElementById('guesses-left').textContent = guessesLeft;
-}
+
 
 
 
@@ -128,6 +114,7 @@ if(winCounter === randWord.length)
     underScores = [];
     userGuesses = [];
     wrongGuesses = [];
+    correctGuesses = [];
     randWord;
     winCounter = 0;
     $('#wrong-guesses').html(wrongGuesses + ', ');
@@ -146,6 +133,7 @@ else if(guessesLeft === 0)
     underScores = [];
     userGuesses = [];
     wrongGuesses = [];
+    correctGuesses = [];
     randWord;
     winCounter = 0;
     $('#wrong-guesses').html(wrongGuesses + ' ');
@@ -156,10 +144,30 @@ else if(guessesLeft === 0)
 }
 
 
+function startGame() {
+// picks random word
+randWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+for (let i = 0; i < randWord.length; i++)
+{
+    underScores.push(' _ ');
+}
+document.getElementById('word-blanks').textContent = underScores.join(' ');
+//reset
+wrongLetter = [];
+guessesLeft = 9;
+//html
+document.getElementById('guesses-left').textContent = guessesLeft;
+}
+
+
+
 document.onkeyup = function(event)
 {
 userGuesses = event.key;
+
+
 //Checking if the letter exists inside the word.
+
 if (guessesLeft === 7) {
     myFunction1();
 } else if (guessesLeft === 4) {
@@ -168,9 +176,9 @@ if (guessesLeft === 7) {
     myFunction3();
 } 
 
-
-
-if(randWord.indexOf(userGuesses) > -1)
+if (correctGuesses.includes(userGuesses)) {
+    return
+} else if(randWord.indexOf(userGuesses) > -1)
 {
     for (let i=0; i < randWord.length; i++)
     {
@@ -178,9 +186,10 @@ if(randWord.indexOf(userGuesses) > -1)
         {
             underScores[i] = userGuesses;
             $('#word-blanks').html(underScores);
-            console.log(underScores);
+            correctGuesses.push(userGuesses);
             winCounter++;
             winLose();
+            console.log(correctGuesses);
             
         }
     }
@@ -189,15 +198,12 @@ else
 {
     wrongLetter.push(userGuesses);
     wrongGuesses.push(userGuesses);
-    death++;
-    console.log(death)
     $('#wrong-guesses').html(wrongGuesses + ', ');
     guessesLeft--;
     $('#guesses-left').html(guessesLeft);
-    console.log(wrongLetter);
     winLose();
 }
-} 
+} ;
 
 //main
 //====================================

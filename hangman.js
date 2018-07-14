@@ -12,3 +12,5 @@ function myFunction4() {
     document.getElementById("chest").style.visibility = "hidden";
     document.getElementById("legs").style.visibility = "hidden";
 }
+
+
